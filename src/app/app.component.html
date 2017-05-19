@@ -1,0 +1,35 @@
+<html>
+<body>
+
+<div class="ui secondary pointing menu" ng-controller="navController">
+		 <img id="logo" src="/assets/MAlogo.png" routerLink="/">
+
+  <a class="item" (click)="setActive()" routerLink="/topevents">
+    Top events
+  </a>
+  <a class="item" routerLink="/events">
+    My events
+  </a>
+  <a class="item" routerLink="/search">
+    Search
+  </a>
+  <a class="item" *ngIf="auth.authenticated()" routerLink="/search">
+    Message
+  </a>
+  <div class="right menu">
+		<a class="ui item" routerLink="/profile" *ngIf="auth.authenticated()">
+      Profile
+    </a>
+    <a class="ui item" (click)="auth.login()" *ngIf="!auth.authenticated()">
+      Login
+    </a>
+		<a class="ui item" (click)="auth.logout()" *ngIf="auth.authenticated()" routerLink="/home">
+      Logout
+    </a>
+  </div>
+</div>
+	 <h1>{{title}}</h1>
+   <router-outlet></router-outlet>
+ </body>
+
+</html>

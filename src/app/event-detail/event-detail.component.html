@@ -1,0 +1,18 @@
+<div *ngIf="event">
+  <h2>{{event.name}} details!</h2>
+  
+  <div>
+    <label>Sport: </label>
+    <input [(ngModel)]="event.name" placeholder="name" />
+  </div>
+  <div>
+    <label>Kada? </label>{{event.date}}
+	</div>
+  <div>
+    <label>Gde? </label>{{event.place}}
+	</div>
+  <div>
+    <label>U koliko sati? </label>{{event.time}}
+	</div>
+  <button (click)="goBack()">Back</button>
+</div>

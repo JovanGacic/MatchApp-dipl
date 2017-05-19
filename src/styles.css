@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+#logo {
+	width: 70px;
+	height: 70px;
+}
+body {
+	height: 880px;
+	overflow-y: hidden;
+}
