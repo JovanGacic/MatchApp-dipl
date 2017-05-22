@@ -6,4 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['cities.component.css']
 })
 export class CitiesComponent {
+  name: string;
+
+  filterPlace(event){
+    console.log(event);
+  }
 }
