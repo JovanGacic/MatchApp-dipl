@@ -23,7 +23,7 @@
     <a class="ui item" (click)="auth.login()" *ngIf="!auth.authenticated()" routerLinkActive="active">
       Login
     </a>
-		<a class="ui item" (click)="auth.logout()" *ngIf="auth.authenticated()" routerLink="/home" routerLinkActive="active">
+		<a class="ui item" (click)="auth.logout()" routerLink="/home" routerLinkActive="active" *ngIf="auth.authenticated()">
       Logout
     </a>
   </div>
@@ -31,5 +31,4 @@
 	 <h1>{{title}}</h1>
    <router-outlet></router-outlet>
  </body>
-
 </html>

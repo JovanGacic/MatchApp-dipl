@@ -2,8 +2,11 @@
 #logo {
 	width: 70px;
 	height: 70px;
+	background: transparent;
 }
 body {
 	height: 880px;
 	overflow-y: hidden;
+	background: url('/assets/background2.jpg');
+	
 }

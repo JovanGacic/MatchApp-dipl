@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
- import { AUTH_PROVIDERS } from 'angular2-jwt';
+import { AUTH_PROVIDERS } from 'angular2-jwt';
 
 import { AppComponent } from './app.component';
 import { EventDetailComponent } from './event-detail/event-detail.component';
@@ -16,7 +16,7 @@ import { SearchComponent } from "app/search/search.component";
 import { NotFoundComponent } from "./notfound/notfound.component";
 
 import { EventService } from './services/event.service';
- import { Auth } from './services/auth.service';
+import { Auth } from './services/auth.service';
 
 
 @NgModule({

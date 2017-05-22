@@ -2,3 +2,7 @@ h1 {
   text-align: center;
 	  padding: center;
 }
+
+ui.center.aligned.grid{
+  opacity: 0.1 !important;
+}
