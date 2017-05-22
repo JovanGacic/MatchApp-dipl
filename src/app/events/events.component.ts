@@ -23,4 +23,7 @@ export class EventsComponent implements OnInit {
   onSelect(event: Event): void {
     this.selectedEvent = event;
   }
+  filterPlace(selectedEvent){
+    console.log(selectedEvent);
+  }
 }

@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { CitiesComponent } from './cities/cities.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SearchComponent } from "app/search/search.component";
+import { NotFoundComponent } from "./notfound/notfound.component";
 
 import { EventService } from './services/event.service';
  import { Auth } from './services/auth.service';
@@ -21,13 +22,14 @@ import { EventService } from './services/event.service';
 @NgModule({
   declarations: [
     AppComponent,
-	EventDetailComponent,
-	EventsComponent,
-	TopEventsComponent,
-  HomeComponent,
-  CitiesComponent,
-  ProfileComponent,
-	SearchComponent
+		EventDetailComponent,
+		EventsComponent,
+		TopEventsComponent,
+ 	  HomeComponent,
+  	CitiesComponent,
+  	ProfileComponent,
+		SearchComponent,
+		NotFoundComponent
   ],
   imports: [ 
     BrowserModule,
@@ -65,6 +67,10 @@ import { EventService } from './services/event.service';
 		{
 			path: 'search',
 			component: SearchComponent
+		},
+		{
+			path: '**',
+			component: NotFoundComponent
 		}
 	])
   ],
@@ -75,4 +81,9 @@ import { EventService } from './services/event.service';
   bootstrap: [AppComponent]
 })
 
-export class AppModule {}
+export class AppModule {
+
+
+
+
+}
