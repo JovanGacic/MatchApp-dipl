@@ -2,5 +2,9 @@ h1 {
   text-align: center;
 	  padding: center;
       margin-top: 100px;
-      border-style: groove;    
+      background: rgba(255,255,255,0.7);
+      border-style: groove;
+      height: 400px;
+      width: 900px;   
+      font-family: 'Open Sans', sans-serif; 
 }

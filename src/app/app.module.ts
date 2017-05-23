@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { AUTH_PROVIDERS } from 'angular2-jwt';
+
 
 import { AppComponent } from './app.component';
 import { EventDetailComponent } from './event-detail/event-detail.component';
@@ -17,13 +17,18 @@ import { NotFoundComponent } from "./notfound/notfound.component";
 
 import { EventService } from './services/event.service';
 import { Auth } from './services/auth.service';
+import { AUTH_PROVIDERS } from 'angular2-jwt';
+import { AngularFireDatabase } from "angularfire2/database";
+import { AngularFireModule } from 'angularfire2';
+import { environment } from './environment';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
 		EventDetailComponent,
-		EventsComponent,
+		EventsComponent, 
 		TopEventsComponent,
  	  HomeComponent,
   	CitiesComponent,
@@ -33,7 +38,8 @@ import { Auth } from './services/auth.service';
   ],
   imports: [ 
     BrowserModule,
-    FormsModule,
+    FormsModule, 
+		AngularFireModule.initializeApp(environment.firebase),
     HttpModule,
 	RouterModule.forRoot([
     {
@@ -76,7 +82,8 @@ import { Auth } from './services/auth.service';
   ],
   providers: [
 		 AUTH_PROVIDERS,
-    Auth
+    Auth,
+		AngularFireDatabase
   ],
   bootstrap: [AppComponent]
 })

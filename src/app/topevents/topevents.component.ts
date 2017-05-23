@@ -6,6 +6,7 @@ import { EventService } from '../services/event.service';
 @Component({
   selector: 'my-topevent',
   templateUrl: './topevents.component.html',
+  styleUrls: ['topevents.component.css']
 })
 export class TopEventsComponent implements OnInit {
   events: Event[] = [];

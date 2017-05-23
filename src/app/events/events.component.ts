@@ -3,6 +3,8 @@ import { Event } from '../event/event.component';
 
 import { EventService } from '../services/event.service';
 import { Auth } from '../services/auth.service';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+
 
 @Component({
   selector: 'my-events',
@@ -13,7 +15,10 @@ export class EventsComponent implements OnInit {
 
   events: Event[];
   selectedEvent: Event;
-  constructor(private eventService: EventService, private auth:Auth) { }
+  items: FirebaseListObservable<any[]>;
+  constructor(private eventService: EventService, private auth:Auth, db: AngularFireDatabase) {
+       this.items = db.list('/items');
+   }
   getEvents(): void {
     this.eventService.getEvents().then(events => this.events = events);
   }
