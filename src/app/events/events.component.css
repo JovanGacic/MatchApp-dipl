@@ -1,5 +1,13 @@
 #eventlist {
-  margin-left: 100px;
+  text-align: center;
+	  padding: center;
+    margin:auto;
+     
+      background: rgba(255,255,255,0.7);
+      border-style: groove;
+      height: 900px;
+      width: 900px;   
+      font-family: 'Open Sans', sans-serif; 
 }
 
  .selected {
@@ -7,8 +15,11 @@
       color: white;
     }
     .events {
+      text-align: left;
       
+  
       margin: 20px 0 100px 0;
+      margin-left: 50px;
       list-style-type: none;
       padding: 0;
       width: 15em;
@@ -18,7 +29,9 @@
       position: relative;
       left: 0;
       background-color: #EEE;
+      
       margin: .5em;
+      margin-bottom: 10px;
       padding: .3em 0;
       height: 1.6em;
       border-radius: 4px;
