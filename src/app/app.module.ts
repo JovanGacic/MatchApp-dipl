@@ -21,6 +21,7 @@ import { AUTH_PROVIDERS } from 'angular2-jwt';
 import { AngularFireDatabase } from "angularfire2/database";
 import { AngularFireModule } from 'angularfire2';
 import { environment } from './environment';
+import { CanActivateViaAuthGuard } from "app/services/authguard.service";
 
 
 
@@ -68,7 +69,10 @@ import { environment } from './environment';
 		},
     {
       path: 'profile',
-      component: ProfileComponent
+      component: ProfileComponent,
+			canActivate: [
+    CanActivateViaAuthGuard
+  ]
     },
 		{
 			path: 'search',
@@ -83,7 +87,8 @@ import { environment } from './environment';
   providers: [
 		 AUTH_PROVIDERS,
     Auth,
-		AngularFireDatabase
+		AngularFireDatabase,
+		  CanActivateViaAuthGuard
   ],
   bootstrap: [AppComponent]
 })
