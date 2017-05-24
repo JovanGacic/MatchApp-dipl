@@ -1,12 +1,44 @@
+.content{
+     text-align: center;
+	  padding: center;
+      margin:auto;
+      margin-top: 100px;
+      background: rgba(255,255,255,0.7);
+      border-style: groove;
+      height: 400px;
+      width: 900px;   
+}
+
 .slikeiprilike{
      text-align: center;
     padding: center;
 }
 .ui.avatar.image{
+    margin-top: 50px;
     height: 100px;
     width: 100px;
 }
 #centralnaSrbija{
+    height: 100%;
+    width: 100%;
+}
+#juznaSrbija{
+    height: 100%;
+    width: 100%;
+}
+#beograd{
+    height: 100%;
+    width: 100%;
+}
+#vojvodina{
+    height: 100%;
+    width: 100%;
+}
+#zapadnaSrbija{
+    height: 100%;
+    width: 100%;
+}
+#istocnaSrbija{
     height: 100%;
     width: 100%;
 }

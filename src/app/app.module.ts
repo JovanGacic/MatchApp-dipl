@@ -22,6 +22,7 @@ import { AngularFireDatabase } from "angularfire2/database";
 import { AngularFireModule } from 'angularfire2';
 import { environment } from './environment';
 import { CanActivateViaAuthGuard } from "app/services/authguard.service";
+import { NewEventComponent } from "./newevent/newevent.component";
 
 
 
@@ -35,6 +36,7 @@ import { CanActivateViaAuthGuard } from "app/services/authguard.service";
   	CitiesComponent,
   	ProfileComponent,
 		SearchComponent,
+		NewEventComponent,
 		NotFoundComponent
   ],
   imports: [ 
@@ -77,6 +79,10 @@ import { CanActivateViaAuthGuard } from "app/services/authguard.service";
 		{
 			path: 'search',
 			component: SearchComponent
+		},
+		{
+			path: 'newevent',
+			component: NewEventComponent
 		},
 		{
 			path: '**',

@@ -1,12 +1,13 @@
 <div id="eventlist">
   <h2>My Events</h2>
 <div class="events">
-  <li *ngFor="let event of events" [class.selected]="event === selectedEvent" (click)="onSelect(event); filterPlace(event)" >
+  <li *ngFor="let event of events" [class.selected]="event === selectedEvent" (click)="onSelect(event)" >
     <span class="badge">{{event.date}}</span> {{event.name}}
   </li>
-   <event-detail [event]="selectedEvent"></event-detail>
- 
-</div>
+  </div>
+  <div class="detail">
+     <event-detail [event]="selectedEvent"></event-detail>
+  </div>
 <ul> 
   <li class="text" *ngFor="let item of items | async">
     {{item.name}}
