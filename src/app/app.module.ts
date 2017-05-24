@@ -73,7 +73,7 @@ import { NewEventComponent } from "./newevent/newevent.component";
       path: 'profile',
       component: ProfileComponent,
 			canActivate: [
-    CanActivateViaAuthGuard
+    CanActivateViaAuthGuard 
   ]
     },
 		{

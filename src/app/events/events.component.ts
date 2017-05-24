@@ -27,6 +27,11 @@ export class EventsComponent implements OnInit {
   }
   onSelect(event: Event): void {
     this.selectedEvent = event;
+    
+ 
   }
-  
+  getDate(event: Event) {
+       var date = new Date(event.date);
+    console.log(date);
+  }
 }

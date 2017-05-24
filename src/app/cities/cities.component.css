@@ -1,7 +1,17 @@
 body{
   text-align: center;
     padding: center;
-    background: transparent;
+    
+
+    margin:auto;
+    margin-top: 100px;
+     
+      background: rgba(255,255,255,0.7);
+      border-style: groove;
+      height: 400px;
+      width: 900px;   
+      font-family: 'Open Sans', sans-serif; 
+
 }
 #GM{
   height: 150px;
