@@ -1,11 +1,12 @@
 <html>
   <head>
     	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
   </head>
 <body>
 
-<div class="ui secondary pointing menu" ng-controller="navController">
+<div class="ui secondary pointing menu">
 		 <img id="logo" src="/assets/MAlogo.png" routerLink="/">
 
   <a class="item" routerLink="/topevents" routerLinkActive="active">
@@ -33,6 +34,7 @@
 		<a class="ui item" (click)="auth.logout()" routerLink="/home" routerLinkActive="active" *ngIf="auth.authenticated()">
       Logout
     </a>
+    
   </div>
 </div>
 	 <!--<h1>{{title}}</h1>-->

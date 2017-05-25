@@ -13,6 +13,4 @@ export class AppComponent {
 	title = 'Match App';
 
 	constructor( private auth:Auth){}
-
-	
 }

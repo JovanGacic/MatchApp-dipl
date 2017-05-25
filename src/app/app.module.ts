@@ -38,7 +38,7 @@ import { NewEventComponent } from "./newevent/newevent.component";
 		SearchComponent,
 		NewEventComponent,
 		NotFoundComponent
-  ],
+  ], 
   imports: [ 
     BrowserModule,
     FormsModule, 
