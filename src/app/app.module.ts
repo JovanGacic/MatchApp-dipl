@@ -30,9 +30,9 @@ import { NewEventComponent } from "./newevent/newevent.component";
   declarations: [
     AppComponent,
 		EventDetailComponent,
-		EventsComponent, 
+		EventsComponent,  
 		TopEventsComponent,
- 	  HomeComponent,
+ 	  HomeComponent, 
   	CitiesComponent,
   	ProfileComponent,
 		SearchComponent,

@@ -12,4 +12,5 @@ export class NewEventComponent{
     place : string;
     time : string;
     sport : string;
+    date : Date;
 }
