@@ -8,6 +8,6 @@ export class CanActivateViaAuthGuard implements CanActivate {
   constructor(private authService: Auth) {}
 
   canActivate() {
-    return this.authService.authenticated();
+    return this.authService.isAuthenticated();
   }
 }

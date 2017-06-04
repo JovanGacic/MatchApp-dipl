@@ -6,15 +6,14 @@ import { Auth } from '../services/auth.service';
   templateUrl: 'profile.component.html'
 })
 
-export class ProfileComponent{
+export class ProfileComponent {
 
-  profile:any;
+  profile: any;
   id: number;
   nick: string;
-  
 
-
-constructor( private auth:Auth){
-  this.profile = JSON.parse(localStorage.getItem('profile'));
-}
+  constructor(private auth: Auth) {
+    this.profile = this.auth.profile;
+    console.log(this.profile);
+  }
 }

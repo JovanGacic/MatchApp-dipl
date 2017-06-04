@@ -16,9 +16,10 @@ export class EventsComponent implements OnInit {
   events: Event[];
   selectedEvent: Event;
   items: FirebaseListObservable<any[]>;
-  constructor(private eventService: EventService, private auth:Auth, db: AngularFireDatabase) {
-       this.items = db.list('/items');
-   }
+  constructor(private eventService: EventService, private auth: Auth, db: AngularFireDatabase) {
+    this.items = db.list('/items');
+    console.log(this.items);
+  }
   getEvents(): void {
     this.eventService.getEvents().then(events => this.events = events);
   }
@@ -27,11 +28,10 @@ export class EventsComponent implements OnInit {
   }
   onSelect(event: Event): void {
     this.selectedEvent = event;
-    
- 
+
   }
   getDate(event: Event) {
-       var date = new Date(event.date);
+    var date = new Date(event.date);
     console.log(date);
   }
 }

@@ -1,83 +1,50 @@
 <html>
-   
-        <div class="ui form">
-  <div class="field">
-    <label>Event's name</label>
-    <input type="text">
-  </div>
-    <br>
-  <div>
-        <label>Sport</label>
-   <select class="ui search dropdown"> 
-       <option value="">Select sport</option>
-      <option value="AF">Afghanistan</option>
-      <option value="AX">Åland Islands</option>
-      <option value="AL">Albania</option>
-   </select>
-  </div>
-  <br>
-   <div>
-        <label>Town</label>
-   <select class="ui search dropdown"> 
-       <option value="">Select town</option>
-      <option value="AF">Afghanistan</option>
-      <option value="AX">Åland Islands</option>
-      <option value="AL">Albania</option>
-   </select>
-  </div>
-  <br>
-  <div>
-        
 
-  <label>Place</label>
-    <select class="ui search dropdown"> 
-       <option value="">Select place</option>
-      <option value="AF">Afghanistan</option>
-      <option value="AX">Åland Islands</option>
-      <option value="AL">Albania</option>
-   </select>
-  </div>
-  
+<form class="ui form" (submit)="createEvent(eventName.value)">
+    <div class="field">
+        <label>Event's name</label>
+        <input type="text" #eventName>
+    </div>
     <br>
-       <div class = "field">
-            <label>Date</label>
-           <input type="date">
+    <div>
+        <label>Sport</label>
+        <select class="ui search dropdown"> 
+       <option value="">Select sport</option>
+      <option *ngFor="let sport of sports | async" value="{{sport.sport}}">{{sport.sport}}</option>
+   </select>
+    </div>
+    <br>
+    <div>
+        <label>Town</label>
+        <select class="ui search dropdown" (change)="getPlaces($event.target.value)"> 
+       <option value="">Select town</option>
+      <option *ngFor="let town of towns | async" value="{{town.$key}}">{{town.name}}</option>
+   </select>
+    </div>
+    <br>
+    <div>
+        <label>Place</label>
+        <select class="ui search dropdown"> 
+       <option value="">Select place</option>
+        <option *ngFor="let place of places | async" value="{{place.name}}">{{place.name}}</option>
+   </select>
+    </div>
+    <br>
+    <div class="field">
+        <label>Date</label>
+        <input type="date">
+    </div>
+    <div class="field">
         <label>Time</label>
-   <select class="ui search dropdown">
-          <option value="">Select time</option>
-      <option value="00">00h</option>
-      <option value="01">01h</option>
-      <option value="02">02h</option>
-      <option value="03">03h</option>
-      <option value="04">04h</option>
-      <option value="05">05h</option>
-      <option value="06">06h</option>
-      <option value="07">07h</option>
-      <option value="08">08h</option>
-      <option value="09">09h</option>
-      <option value="10">10h</option>
-      <option value="11">11h</option>
-      <option value="12">12h</option>
-      <option value="13">13h</option>
-      <option value="14">14h</option>
-      <option value="15">15h</option>   
-      <option value="16">16h</option>
-      <option value="17">17h</option>
-      <option value="18">18h</option>   
-      <option value="19">19h</option>
-      <option value="20">20h</option>
-      <option value="21">21h</option>
-      <option value="22">22h</option>
-      <option value="23">23h</option>
-      <option value="24">24h</option> </select>
-  </div>  
-  <div>
-    <button class="ui right labeled icon button">
+        <input type="time" />
+    </div>
+    <div>
+        <button type="submit" class="ui right labeled icon button">
   <i class="right arrow icon"></i>
   Next
 </button>
-</div>
-</div>
+    </div>
+</form>
 
 
 </html>

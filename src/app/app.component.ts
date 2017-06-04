@@ -12,5 +12,7 @@ import { Auth } from './services/auth.service';
 export class AppComponent {
 	title = 'Match App';
 
-	constructor( private auth:Auth){}
+	constructor( private auth:Auth){
+		auth.handleAuthentication();
+	}
 }

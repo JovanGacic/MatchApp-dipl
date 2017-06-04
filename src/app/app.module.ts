@@ -91,7 +91,7 @@ import { NewEventComponent } from "./newevent/newevent.component";
 	])
   ],
   providers: [
-		 AUTH_PROVIDERS,
+		//  AUTH_PROVIDERS,
     Auth,
 		AngularFireDatabase,
 		  CanActivateViaAuthGuard
