@@ -14,6 +14,5 @@ export class ProfileComponent {
 
   constructor(private auth: Auth) {
     this.profile = this.auth.profile;
-    console.log(this.profile);
   }
 }

@@ -7,6 +7,8 @@ import { Sport } from './../models/Sport';
 
 import { Component } from '@angular/core';
 
+declare const $: any;
+
 @Component({
     selector: 'newevent',
     templateUrl: 'newevent.component.html',
@@ -15,11 +17,11 @@ import { Component } from '@angular/core';
 
 export class NewEventComponent {
     name: string;
-    place: string;
-    time: string;
-    sport: string;
-    date: Date;
-
+    selectedPlace: string;
+    selectedTime: string;
+    selectedSport: string;
+    selectedDate: Date;
+    selectedtown: string;
     sports: FirebaseListObservable<Sport[]>;
     towns: FirebaseListObservable<Town[]>;
     places: FirebaseListObservable<Place[]>;
@@ -30,17 +32,43 @@ export class NewEventComponent {
     }
 
     getPlaces(key) {
-        console.log(key);
         this.places = this.db.list('/towns/' + key + '/places');
+        this.selectedtown = $('#' + key).text();
+    }
+
+    setPlace(selectedPlace) {
+        this.selectedPlace = selectedPlace;
+    }
+
+    setSport(selectedSport) {
+        this.selectedSport = selectedSport;
+    }
+
+    setDate(selectedDate) {
+        this.selectedDate = selectedDate;
+    }
+
+    setTime(selectedTime) {
+        this.selectedTime = selectedTime;
     }
 
     createEvent(eventName) {
+        const town = this.selectedtown;
+        const place = this.selectedPlace;
+        const sport = this.selectedSport;
+        const date = this.selectedDate;
+        const time = this.selectedTime;
         const userId = this.auth.profile.sub;
         const newEvent = {
             eventName: eventName,
+            place: place,
+            sport: sport,
+            date: date,
+            time: time,
             userId: userId
-        }
-        console.log(newEvent);
+        };
+        const events = this.db.list('/events');
+        events.push(newEvent);
     }
 
 }

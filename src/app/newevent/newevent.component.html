@@ -8,7 +8,7 @@
     <br>
     <div>
         <label>Sport</label>
-        <select class="ui search dropdown"> 
+        <select class="ui search dropdown" (change)="setSport($event.target.value)"> 
        <option value="">Select sport</option>
       <option *ngFor="let sport of sports | async" value="{{sport.sport}}">{{sport.sport}}</option>
    </select>
@@ -16,15 +16,15 @@
     <br>
     <div>
         <label>Town</label>
-        <select class="ui search dropdown" (change)="getPlaces($event.target.value)"> 
+        <select class="ui search dropdown" id="sel" (change)="getPlaces($event.target.value)"> 
        <option value="">Select town</option>
-      <option *ngFor="let town of towns | async" value="{{town.$key}}">{{town.name}}</option>
+      <option *ngFor="let town of towns | async" id="{{town.$key}}" value="{{town.$key}}">{{town.name}}</option>
    </select>
     </div>
     <br>
     <div>
         <label>Place</label>
-        <select class="ui search dropdown"> 
+        <select class="ui search dropdown" (change)="setPlace($event.target.value)"> 
        <option value="">Select place</option>
         <option *ngFor="let place of places | async" value="{{place.name}}">{{place.name}}</option>
    </select>
@@ -32,11 +32,11 @@
     <br>
     <div class="field">
         <label>Date</label>
-        <input type="date">
+        <input type="date" (change)="setDate($event.target.value)" />
     </div>
     <div class="field">
         <label>Time</label>
-        <input type="time" />
+        <input type="time" (change)="setTime($event.target.value)" />
     </div>
     <div>
         <button type="submit" class="ui right labeled icon button">
