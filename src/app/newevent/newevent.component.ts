@@ -31,6 +31,10 @@ export class NewEventComponent {
         this.towns = db.list('/towns');
     }
 
+    show() {
+        $('.ui.modal').modal('show');
+    }
+
     getPlaces(key) {
         this.places = this.db.list('/towns/' + key + '/places');
         this.selectedtown = $('#' + key).text();

@@ -37,9 +37,13 @@
         <input type="time" (change)="setTime($event.target.value)" />
     </div>
     <div>
-        <button type="submit" class="ui right labeled icon button">
+        <button type="submit" class="ui right labeled icon button" (click)="show()">
             <i class="right arrow icon"></i>
             Next
         </button>
     </div>
 </form>
+
+<div class="ui modal">
+    <p>dsafsa</p>
+</div>
