@@ -17,6 +17,7 @@ export class EventsComponent implements OnInit {
   selectedEvent: Event;
   items: FirebaseListObservable<any[]>;
   title: string;
+  joinButton = false;
 
   @Input() selectedCity: string;
   @Input() pageTitle: string;
@@ -35,6 +36,7 @@ export class EventsComponent implements OnInit {
         }
       });
     } else {
+      this.joinButton = true;
       this.title = this.pageTitle;
       this.events = this.db.list('/events', {
         query: {

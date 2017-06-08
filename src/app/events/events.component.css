@@ -71,3 +71,13 @@
     padding-left: 20%;
     padding-right: 20%;
 }
+
+#players {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+#player {
+    max-height: 160px;
+    max-width: 105px;
+}

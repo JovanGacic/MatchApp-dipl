@@ -4,7 +4,9 @@
     <div class="ui relaxed divided list" id="event">
         <div class="item" *ngFor="let event of events | async" [class.selected]="event === selectedEvent" (click)="onSelect(event)">
             <div class="right floated content">
-                <div class="ui button">Join</div>
+                <div class="ui button" *ngIf="joinButton === true">Join</div>
+                <div class="ui button" *ngIf="joinButton === false">Edit</div>
+                <div class="ui button" *ngIf="joinButton === false">Delete</div>
             </div>
             <i class="large soccer middle aligned icon"></i>
             <div class="content">
@@ -18,9 +20,70 @@
     <div class="detail">
         <event-detail [event]="selectedEvent"></event-detail>
     </div>
-    <ul>
-        <li class="text" *ngFor="let item of items | async">
-            {{item.name}}
-        </li>
-    </ul>
+
+    <h2>Joined</h2>
+    <div class="ui cards" id="players">
+        <div class="card" id="player">
+            <div class="image">
+                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
+            </div>
+        </div>
+        <div class="card" id="player">
+            <div class="image">
+                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
+            </div>
+        </div>
+        <div class="card" id="player">
+            <div class="image">
+                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
+            </div>
+        </div>
+        <div class="card" id="player">
+            <div class="image">
+                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
+            </div>
+        </div>
+        <div class="card" id="player">
+            <div class="image">
+                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
+            </div>
+        </div>
+        <div class="card" id="player">
+            <div class="image">
+                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
+            </div>
+        </div>
+        <div class="card" id="player">
+            <div class="image">
+                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
+            </div>
+        </div>
+        <div class="card" id="player">
+            <div class="image">
+                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
+            </div>
+        </div>
+        <div class="card" id="player">
+            <div class="image">
+                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
+            </div>
+        </div>
+        <div class="card" id="player">
+            <div class="image">
+                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
+            </div>
+        </div>
+        <div class="card" id="player">
+            <div class="image">
+                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
+            </div>
+        </div>
+        <div class="card" id="player">
+            <div class="image">
+                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
+            </div>
+        </div>
+
+    </div>
+
 </div>
