@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Event } from '../models/event';
 
-import { EventService } from '../services/event.service';
 import { Auth } from '../services/auth.service';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
@@ -22,7 +21,7 @@ export class EventsComponent implements OnInit {
   @Input() selectedCity: string;
   @Input() pageTitle: string;
 
-  constructor(private eventService: EventService, private auth: Auth, private db: AngularFireDatabase) {
+  constructor(private auth: Auth, private db: AngularFireDatabase) {
     this.items = db.list('/items');
   }
 
