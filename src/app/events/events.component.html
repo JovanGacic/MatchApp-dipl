@@ -2,10 +2,10 @@
     <h2>{{title}}</h2>
 
     <div class="ui relaxed divided list" id="event">
-        <div class="item" *ngFor="let event of events | async" [class.selected]="event === selectedEvent" (click)="onSelect(event)">
+        <div class="item" *ngFor="let event of events | async" [class.selected]="event === selectedEvent">
             <div class="right floated content">
                 <div class="ui button" *ngIf="joinButton === true">Join</div>
-                <div class="ui button" *ngIf="joinButton === false">Edit</div>
+                <div class="ui button" *ngIf="joinButton === false" (click)="onSelect(event)">Edit</div>
                 <div class="ui button" *ngIf="joinButton === false">Delete</div>
             </div>
             <i class="large soccer middle aligned icon"></i>
