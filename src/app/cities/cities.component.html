@@ -1,12 +1,17 @@
-<html>
-  <body>
-    <h1>
-      Select your city of preference
-    </h1>
-    <div class="grbovi">
-    <img id="GM" src = "../../assets/GM.png" title="Gornji Milanovac" routerLink="/events">
-    <img id="CA" src = "../../assets/CA.png" title="Čačak">
-      <img id="JA" src = "../../assets/JA.png" title="Jagodina">
+<html *ngIf="!selectedCity">
+
+<body>
+    <div class="cities">
+        <h1>Select your city of preference</h1>
+        <div class="grbovi">
+            <img id="cityLogo" src="../../assets/BG.png" title="Belgrade" (click)="selectCity($event.target.title)">
+            <img id="cityLogo" src="../../assets/GM.png" title="Gornji Milanovac" (click)="selectCity($event.target.title)">
+            <img id="cityLogo" src="../../assets/CA.png" title="Čačak" (click)="selectCity($event.target.title)">
+            <img id="cityLogo" src="../../assets/JA.png" title="Jagodina" (click)="selectCity($event.target.title)">
+        </div>
     </div>
-  </body>
+</body>
+
 </html>
+
+<events *ngIf="selectedCity" [selectedCity]="selectedCity" [pageTitle]="pageTitle"></events>

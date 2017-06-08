@@ -12,17 +12,17 @@ import { TopEventsComponent } from './topevents/topevents.component';
 import { HomeComponent } from './home/home.component';
 import { CitiesComponent } from './cities/cities.component';
 import { ProfileComponent } from './profile/profile.component';
-import { SearchComponent } from "app/search/search.component";
-import { NotFoundComponent } from "./notfound/notfound.component";
+import { SearchComponent } from 'app/search/search.component';
+import { NotFoundComponent } from './notfound/notfound.component';
 
 import { EventService } from './services/event.service';
 import { Auth } from './services/auth.service';
 import { AUTH_PROVIDERS } from 'angular2-jwt';
-import { AngularFireDatabase } from "angularfire2/database";
+import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from './environment';
-import { CanActivateViaAuthGuard } from "app/services/authguard.service";
-import { NewEventComponent } from "./newevent/newevent.component";
+import { CanActivateViaAuthGuard } from 'app/services/authguard.service';
+import { NewEventComponent } from './newevent/newevent.component';
 
 
 

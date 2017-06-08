@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Event } from '../event/event.component';
 
 import { EventService } from '../services/event.service';
@@ -7,29 +7,48 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 
 
 @Component({
-  selector: 'my-events',
+  selector: 'events',
   templateUrl: 'events.component.html',
   styleUrls: ['events.component.css']
 })
 export class EventsComponent implements OnInit {
 
-  events: Event[];
+  events: FirebaseListObservable<Event[]>;
   selectedEvent: Event;
   items: FirebaseListObservable<any[]>;
-  constructor(private eventService: EventService, private auth: Auth, db: AngularFireDatabase) {
+  title: string;
+
+  @Input() selectedCity: string;
+  @Input() pageTitle: string;
+
+  constructor(private eventService: EventService, private auth: Auth, private db: AngularFireDatabase) {
     this.items = db.list('/items');
-    console.log(this.items);
   }
-  getEvents(): void {
-    this.eventService.getEvents().then(events => this.events = events);
-  }
+
   ngOnInit(): void {
-    this.getEvents();
+        if (!this.selectedCity) {
+      this.title = 'My events';
+      this.events = this.db.list('/events', {
+        query: {
+          orderByChild: 'userId',
+          equalTo: this.auth.profile.sub
+        }
+      });
+    } else {
+      this.title = this.pageTitle;
+      this.events = this.db.list('/events', {
+        query: {
+          orderByChild: 'town',
+          equalTo: this.selectedCity
+        }
+      });
+    }
   }
+
   onSelect(event: Event): void {
     this.selectedEvent = event;
-
   }
+
   getDate(event: Event) {
     var date = new Date(event.date);
     console.log(date);

@@ -4,7 +4,7 @@ import { Location } 		from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
 import { EventService } from '../services/event.service';
-import { Event } from '../event/event.component';
+import { Event } from '../models/Event';
 
 @Component({
   selector: 'event-detail',

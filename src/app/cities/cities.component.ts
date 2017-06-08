@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['cities.component.css']
 })
 export class CitiesComponent {
-  name: string;
+
+  pageTitle: string;
+  selectedCity: string;
+
+  selectCity(city) {
+    this.selectedCity = city;
+    this.pageTitle = 'Events in ' + city;
+    console.log(this.selectedCity, this.pageTitle);
+  }
+
 }

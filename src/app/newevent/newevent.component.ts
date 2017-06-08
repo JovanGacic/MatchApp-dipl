@@ -61,6 +61,7 @@ export class NewEventComponent {
         const userId = this.auth.profile.sub;
         const newEvent = {
             eventName: eventName,
+            town: town,
             place: place,
             sport: sport,
             date: date,

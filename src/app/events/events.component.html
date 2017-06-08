@@ -1,16 +1,26 @@
 <div id="eventlist">
-  <h2>My Events</h2>
-<div class="events">
-  <li *ngFor="let event of events" [class.selected]="event === selectedEvent" (click)="onSelect(event)" >
-    <span class="badge">{{event.date}}</span> {{event.name}}
-  </li>
-  </div>
-  <div class="detail">
-     <event-detail [event]="selectedEvent"></event-detail>
-  </div>
-<ul> 
-  <li class="text" *ngFor="let item of items | async">
-    {{item.name}}
-  </li>
-</ul>
+    <h2>{{title}}</h2>
+
+    <div class="ui relaxed divided list" id="event">
+        <div class="item" *ngFor="let event of events | async" [class.selected]="event === selectedEvent" (click)="onSelect(event)">
+            <div class="right floated content">
+                <div class="ui button">Join</div>
+            </div>
+            <i class="large soccer middle aligned icon"></i>
+            <div class="content">
+                <a class="header">{{event.eventName}}</a>
+                <div class="description">{{event.date}}</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="detail">
+        <event-detail [event]="selectedEvent"></event-detail>
+    </div>
+    <ul>
+        <li class="text" *ngFor="let item of items | async">
+            {{item.name}}
+        </li>
+    </ul>
 </div>
