@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -11,19 +12,18 @@ export class CitiesComponent implements OnInit {
   pageTitle: string;
   selectedCity: string;
   @Input() selectedRegion: string;
-  region: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private location: Location) { }
 
   ngOnInit() {
-    this.region = this.selectedRegion;
+    this.navigate();
   }
 
-
-  navigare() {
-    console.log(this.region);
-    // this.router.navigate(['/cities']);
+  navigate() {
+    this.router.navigate(['/cities']);
+    console.log(this.selectedRegion);
   }
+
   selectCity(city: string) {
     this.selectedCity = city;
     this.pageTitle = 'Events in ' + city;

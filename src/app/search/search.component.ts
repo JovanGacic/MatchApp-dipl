@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 
 @Component({
     selector: 'search',
@@ -12,12 +12,12 @@ export class SearchComponent{
 
     constructor(private router: Router) {}
 
-    selectRegion(region:string) {
+    selectRegion(region) {
         this.selectedRegion = region;
         this.navigate();
     }
 
     navigate() {
-        this.router.navigate(['/cities']);
+        // this.router.navigate(['/cities']);
     }
 }
