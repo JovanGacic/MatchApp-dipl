@@ -11,9 +11,8 @@
     <div class="ui secondary pointing menu">
         <img id="logo" src="/assets/MAlogo.png" routerLink="/">
 
-        <a class="item" routerLink="/topevents" routerLinkActive="active">
-    Top events
-  </a>
+        <!--<a class="item" routerLink="/topevents" routerLinkActive="active">Top events</a>-->
+
         <a class="item" routerLink="/search" routerLinkActive="active">
     Browse
   </a>
@@ -23,9 +22,8 @@
         <a class="item" *ngIf="auth.isAuthenticated()" routerLink="/newevent" routerLinkActive="active">
     New event
   </a>
-        <a class="item" *ngIf="auth.isAuthenticated()" routerLink="/message" routerLinkActive="active">
-    Message
-  </a>
+        <!--<a class="item" *ngIf="auth.isAuthenticated()" routerLink="/message" routerLinkActive="active">Message</a>-->
+
         <div class="right menu">
             <a class="ui item" routerLink="/profile" *ngIf="auth.isAuthenticated()" routerLinkActive="active">
       Profile
