@@ -11,20 +11,18 @@ export class CitiesComponent implements OnInit {
   pageTitle: string;
   selectedCity: string;
   @Input() selectedRegion: string;
+  region: string;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.console(this.selectedRegion);
-    this.navigare();
+    this.region = this.selectedRegion;
   }
 
-  console(selectedRegion) {
-    console.log(selectedRegion);
-  }
 
   navigare() {
-    this.router.navigate(['/cities']);
+    console.log(this.region);
+    // this.router.navigate(['/cities']);
   }
   selectCity(city: string) {
     this.selectedCity = city;
