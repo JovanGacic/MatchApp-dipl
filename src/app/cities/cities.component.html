@@ -4,11 +4,15 @@
     <div class="cities">
         <h1>Select your city of preference</h1>
         <div class="grbovi">
-            <img id="cityLogo" src="../../assets/BG.png" title="Belgrade" (click)="selectCity($event.target.title)">
-            <img id="cityLogo" src="../../assets/GM.png" title="Gornji Milanovac" (click)="selectCity($event.target.title)">
-            <img id="cityLogo" src="../../assets/CA.png" title="Čačak" (click)="selectCity($event.target.title)">
-            <img id="cityLogo" src="../../assets/JA.png" title="Jagodina" (click)="selectCity($event.target.title)">
+            <img id="cityLogo" *ngIf="selectedRegion === 'belgrade'" src="../../assets/BG.png" title="Belgrade" (click)="selectCity($event.target.title)">
+            <img id="cityLogo" *ngIf="selectedRegion === 'centralSerbia'" src="../../assets/GM.png" title="Gornji Milanovac" (click)="selectCity($event.target.title)">
+            <img id="cityLogo" *ngIf="selectedRegion === 'centralSerbia'" src="../../assets/CA.png" title="Čačak" (click)="selectCity($event.target.title)">
+            <img id="cityLogo" *ngIf="selectedRegion === 'centralSerbia'" src="../../assets/JA.png" title="Jagodina" (click)="selectCity($event.target.title)">
         </div>
+    </div>
+    <div>
+        <button type="button" class="ui right labeled icon button" routerLink="/search">
+           <i class="ui left arrow icon"></i>Back</button>
     </div>
 </body>
 

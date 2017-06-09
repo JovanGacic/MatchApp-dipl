@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Event } from '../event/event.component';
-import { EventService } from '../services/event.service';
+import { Event } from '../models/event';
 
 @Component({
   selector: 'my-topevent',
@@ -10,9 +9,8 @@ import { EventService } from '../services/event.service';
 })
 export class TopEventsComponent implements OnInit {
   events: Event[] = [];
-  constructor(private eventService: EventService) { }
+  constructor() { }
   ngOnInit(): void {
-    this.eventService.getEvents()
-      .then(events => this.events = events.slice(0, 5));
+
   }
 }

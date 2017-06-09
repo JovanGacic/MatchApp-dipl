@@ -3,7 +3,6 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Location } 		from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
-import { EventService } from '../services/event.service';
 import { Event } from '../models/Event';
 
 @Component({
@@ -14,7 +13,6 @@ import { Event } from '../models/Event';
 export class EventDetailComponent implements OnInit {
 
 	constructor(
-		private eventService: EventService,
 		private route: ActivatedRoute,
 		private location: Location
 	){}
@@ -22,9 +20,7 @@ export class EventDetailComponent implements OnInit {
 	 @Input() event: Event;
 
 	 ngOnInit(): void {
-  this.route.params
-    .switchMap((params: Params) => this.eventService.getEvent(+params['id']))
-    .subscribe(event => this.event = event);
+
 }
 
 	 goBack(): void {

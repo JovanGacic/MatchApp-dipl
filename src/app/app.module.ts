@@ -15,7 +15,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { SearchComponent } from 'app/search/search.component';
 import { NotFoundComponent } from './notfound/notfound.component';
 
-import { EventService } from './services/event.service';
 import { Auth } from './services/auth.service';
 import { AUTH_PROVIDERS } from 'angular2-jwt';
 import { AngularFireDatabase } from 'angularfire2/database';
