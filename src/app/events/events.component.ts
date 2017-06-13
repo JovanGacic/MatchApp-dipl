@@ -50,16 +50,6 @@ export class EventsComponent implements OnInit {
     this.selectedEvent = event;
   }
 
-  joinEvent(key: string) {
-    const nickname = this.auth.profile.nickname;
-    const picture = this.auth.profile.picture;
-    const newPlayer = {
-      nickname: nickname,
-      picture: picture
-    }
-    this.db.list('/events/' + key + '/players').push(newPlayer);
-  }
-
   getDate(event: Event) {
     var date = new Date(event.date);
     console.log(date);

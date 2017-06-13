@@ -1,8 +1,13 @@
 <h2>Joined</h2>
-<div class="ui cards" id="players" *ngFor="let player of players | async">
-    <div class="card" id="player">
+<div class="ui cards" id="players">
+    <div class="card" id="player" *ngFor="let player of players | async">
         <div class="image">
             <img src="{{player.picture}}">
+        </div>
+    </div>
+    <div class="card" id="player" *ngIf="numberOfPlayers < 12">
+        <div class="image" (click)="joinEvent()">
+            <img src="../../assets/new.png">
         </div>
     </div>
 </div>
