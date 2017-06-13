@@ -2,9 +2,9 @@
     <h2>{{title}}</h2>
 
     <div class="ui relaxed divided list" id="event">
-        <div class="item" *ngFor="let event of events | async" [class.selected]="event === selectedEvent">
+        <div class="item" *ngFor="let event of events | async" [class.selected]="event === selectedEvent" (click)="selectMatch(event)">
             <div class="right floated content">
-                <div class="ui button" *ngIf="joinButton === true">Join</div>
+                <div class="ui button" *ngIf="joinButton === true" (click)="joinEvent(event.$key)">Join</div>
                 <div class="ui button" *ngIf="joinButton === false" (click)="onSelect(event)">Edit</div>
                 <div class="ui button" *ngIf="joinButton === false">Delete</div>
             </div>
@@ -21,69 +21,8 @@
         <event-detail [event]="selectedEvent"></event-detail>
     </div>
 
-    <h2>Joined</h2>
-    <div class="ui cards" id="players">
-        <div class="card" id="player">
-            <div class="image">
-                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
-            </div>
-        </div>
-        <div class="card" id="player">
-            <div class="image">
-                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
-            </div>
-        </div>
-        <div class="card" id="player">
-            <div class="image">
-                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
-            </div>
-        </div>
-        <div class="card" id="player">
-            <div class="image">
-                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
-            </div>
-        </div>
-        <div class="card" id="player">
-            <div class="image">
-                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
-            </div>
-        </div>
-        <div class="card" id="player">
-            <div class="image">
-                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
-            </div>
-        </div>
-        <div class="card" id="player">
-            <div class="image">
-                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
-            </div>
-        </div>
-        <div class="card" id="player">
-            <div class="image">
-                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
-            </div>
-        </div>
-        <div class="card" id="player">
-            <div class="image">
-                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
-            </div>
-        </div>
-        <div class="card" id="player">
-            <div class="image">
-                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
-            </div>
-        </div>
-        <div class="card" id="player">
-            <div class="image">
-                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
-            </div>
-        </div>
-        <div class="card" id="player">
-            <div class="image">
-                <img src="https://semantic-ui.com/images/avatar/large/elliot.jpg">
-            </div>
-        </div>
-
+    <div *ngIf="selectedEvent">
+        <app-players [eventKey]="selectedEvent.$key"></app-players>
     </div>
 
 </div>

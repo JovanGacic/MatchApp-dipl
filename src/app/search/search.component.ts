@@ -1,5 +1,5 @@
-import { Router } from '@angular/router';
-import { Component, Output, EventEmitter } from "@angular/core";
+import { Router, Params } from '@angular/router';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'search',
@@ -18,6 +18,6 @@ export class SearchComponent{
     }
 
     navigate() {
-        // this.router.navigate(['/cities']);
+        this.router.navigate(['/cities'], {queryParams: {region: this.selectedRegion}});
     }
 }

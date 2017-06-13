@@ -1,0 +1,8 @@
+<h2>Joined</h2>
+<div class="ui cards" id="players" *ngFor="let player of players | async">
+    <div class="card" id="player">
+        <div class="image">
+            <img src="{{player.picture}}">
+        </div>
+    </div>
+</div>

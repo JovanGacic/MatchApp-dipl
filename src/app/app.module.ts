@@ -22,80 +22,49 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from './environment';
 import { CanActivateViaAuthGuard } from 'app/services/authguard.service';
 import { NewEventComponent } from './newevent/newevent.component';
+import { PlayersComponent } from './players/players.component';
 
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
+	declarations: [
+		AppComponent,
 		EventDetailComponent,
-		EventsComponent,  
+		EventsComponent,
 		TopEventsComponent,
- 	  HomeComponent, 
-  	CitiesComponent,
-  	ProfileComponent,
+		HomeComponent,
+		CitiesComponent,
+		ProfileComponent,
 		SearchComponent,
 		NewEventComponent,
-		NotFoundComponent
-  ], 
-  imports: [ 
-    BrowserModule,
-    FormsModule, 
+		NotFoundComponent,
+		PlayersComponent
+	],
+	imports: [
+		BrowserModule,
+		FormsModule,
 		AngularFireModule.initializeApp(environment.firebase),
-    HttpModule,
-	RouterModule.forRoot([
-    {
-			path: 'home',
-			component: HomeComponent
-		},
-		{	path: 'events',
-			component: EventsComponent
-		},
-    {
-			path: 'cities',
-			component: CitiesComponent
-		},
-		{
-			path: 'topevents',
-			component: TopEventsComponent
-		},
-		{
-			path: '',
-			redirectTo: '/home',
-			pathMatch: 'full'
-		},
-		{
-			path: 'detail/:id',
-			component: EventDetailComponent
-		},
-    {
-      path: 'profile',
-      component: ProfileComponent,
-			canActivate: [
-    CanActivateViaAuthGuard 
-  ]
-    },
-		{
-			path: 'search',
-			component: SearchComponent
-		},
-		{
-			path: 'newevent',
-			component: NewEventComponent
-		},
-		{
-			path: '**',
-			component: NotFoundComponent
-		}
-	])
-  ],
-  providers: [
+		HttpModule,
+		RouterModule.forRoot([
+			{ path: 'home', component: HomeComponent },
+			{ path: 'events', component: EventsComponent, canActivate: [CanActivateViaAuthGuard] },
+			{ path: 'cities', component: CitiesComponent,	canActivate: [CanActivateViaAuthGuard] },
+			{	path: 'topevents', component: TopEventsComponent,	canActivate: [CanActivateViaAuthGuard] },
+			{	path: '',	redirectTo: '/home', pathMatch: 'full' },
+			{	path: 'detail/:id',	component: EventDetailComponent	},
+			{	path: 'profile', component: ProfileComponent,	canActivate: [CanActivateViaAuthGuard] },
+			{	path: 'search',	component: SearchComponent,	canActivate: [CanActivateViaAuthGuard] },
+			{ path: 'newevent',	component: NewEventComponent,	canActivate: [CanActivateViaAuthGuard] },
+			{	path: '**',	component: NotFoundComponent }
+			])
+	],
+	providers: [
 		//  AUTH_PROVIDERS,
-    Auth,
+		Auth,
 		AngularFireDatabase,
-		  CanActivateViaAuthGuard
-  ],
-  bootstrap: [AppComponent]
+		CanActivateViaAuthGuard
+	],
+	bootstrap: [AppComponent]
 })
 
 export class AppModule {

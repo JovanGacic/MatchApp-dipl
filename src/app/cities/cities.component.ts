@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, Params, ActivatedRoute } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -11,17 +11,13 @@ export class CitiesComponent implements OnInit {
 
   pageTitle: string;
   selectedCity: string;
-  @Input() selectedRegion: string;
+  selectedRegion: string;
 
-  constructor(private router: Router, private location: Location) { }
+  constructor(private router: Router, private location: Location, private route: ActivatedRoute) {
+   }
 
   ngOnInit() {
-    this.navigate();
-  }
-
-  navigate() {
-    this.router.navigate(['/cities']);
-    console.log(this.selectedRegion);
+    this.selectedRegion = this.route.snapshot.queryParams['region'];
   }
 
   selectCity(city: string) {
