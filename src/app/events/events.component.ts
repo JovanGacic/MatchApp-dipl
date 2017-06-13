@@ -1,3 +1,5 @@
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 import { Event } from '../models/Event';
 
@@ -14,18 +16,18 @@ export class EventsComponent implements OnInit {
 
   events: FirebaseListObservable<Event[]>;
   selectedEvent: Event;
-  items: FirebaseListObservable<any[]>;
   title: string;
   joinButton = false;
+  selectedCity: string;
+  pageTitle: string;
 
-  @Input() selectedCity: string;
-  @Input() pageTitle: string;
-
-  constructor(private auth: Auth, private db: AngularFireDatabase) {
-    this.items = db.list('/items');
+  constructor(private auth: Auth, private db: AngularFireDatabase, private route: ActivatedRoute, private location: Location) {
+    this.events = db.list('/events');
   }
 
   ngOnInit(): void {
+    this.selectedCity = this.route.snapshot.queryParams['city'];
+    this.pageTitle = this.route.snapshot.queryParams['pageTitle'];
         if (!this.selectedCity) {
       this.title = 'My events';
       this.events = this.db.list('/events', {
@@ -54,4 +56,13 @@ export class EventsComponent implements OnInit {
     var date = new Date(event.date);
     console.log(date);
   }
+
+  deleteEvent(key: string) {
+    this.events.remove(key);
+  }
+
+goBack() {
+  this.location.back();
+}
+
 }

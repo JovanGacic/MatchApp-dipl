@@ -76,3 +76,16 @@
     padding-left: 10%;
     padding-right: 10%;
 }
+
+.item {
+    padding: 10px 10px 10px 10px !important;
+}
+
+.item:hover {
+    cursor: pointer;
+}
+
+#delete:hover {
+    background-color: red;
+    color: white;
+}

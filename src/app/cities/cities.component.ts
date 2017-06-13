@@ -23,6 +23,7 @@ export class CitiesComponent implements OnInit {
   selectCity(city: string) {
     this.selectedCity = city;
     this.pageTitle = 'Events in ' + city;
+    this.router.navigate(['/events'], {queryParams: {city: this.selectedCity, pageTitle: this.pageTitle}});
   }
 
 }

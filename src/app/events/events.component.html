@@ -4,9 +4,7 @@
     <div class="ui relaxed divided list" id="event">
         <div class="item" *ngFor="let event of events | async" [class.selected]="event === selectedEvent" (click)="selectMatch(event)">
             <div class="right floated content">
-
-                <div class="ui button" *ngIf="joinButton === false" (click)="onSelect(event)">Edit</div>
-                <div class="ui button" *ngIf="joinButton === false">Delete</div>
+                <div class="ui button" *ngIf="joinButton === false" id="delete" (click)="deleteEvent(event.$key)">Delete</div>
             </div>
             <i class="large soccer middle aligned icon"></i>
             <div class="content">
@@ -14,7 +12,11 @@
                 <div class="description">{{event.date}}</div>
             </div>
         </div>
+    </div>
 
+    <div>
+        <button *ngIf="title !== 'My events'" type="button" class="ui left labeled icon button" (click)="goBack()">
+           <i class="ui left arrow icon"></i>Back</button>
     </div>
 
     <div class="detail" *ngIf="selectedEvent && selectedEvent.userId === auth.profile.sub">

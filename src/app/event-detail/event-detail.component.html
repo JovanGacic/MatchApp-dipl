@@ -1,43 +1,28 @@
 <div *ngIf="event">
     <h2>{{event.eventName}} details!</h2>
 
-    <!--<div>
-    <label>Sport: </label>
-    <input [(ngModel)]="event.name" placeholder="name" />
-  </div>
-  <div>
-    <label>Kada? </label>{{event.date}}
-	</div>
-  <div>
-    <label>Gde? </label>{{event.place}}
-	</div>
-  <div>
-    <label>U koliko sati? </label>{{event.time}}
-	</div>
-  <button (click)="goBack()">Back</button>-->
-
-
     <div class="ui equal width form">
         <div class="fields">
             <div class="field">
                 <label>Event name</label>
-                <input type="text" [(ngModel)]="event.eventName" placeholder="eventName">
+                <input type="text" [(ngModel)]="name" placeholder="eventName">
             </div>
             <div class="field">
                 <label>Place</label>
-                <input type="text" [(ngModel)]="event.place" placeholder="place">
+                <input type="text" [(ngModel)]="place" placeholder="place">
             </div>
         </div>
         <div class="fields">
             <div class="field">
                 <label>Date</label>
-                <input type="date" [(ngModel)]="event.date" placeholder="date">
+                <input type="date" [(ngModel)]="date" placeholder="date">
             </div>
             <div class="field">
                 <label>Time</label>
-                <input type="time" [(ngModel)]="event.time" placeholder="time">
+                <input type="time" [(ngModel)]="time" placeholder="time">
             </div>
         </div>
+        <button class="ui orange button" (click)="updateEvent()">Update event</button>
     </div>
 
 </div>
