@@ -5,7 +5,7 @@
             <img src="{{player.picture}}">
         </div>
     </div>
-    <div class="card" id="player" *ngIf="numberOfPlayers < 12">
+    <div class="card" id="player" *ngIf="numberOfPlayers < 12 && auth.profile.sub !== event.userId">
         <div class="image" (click)="joinEvent()">
             <img src="../../assets/new.png">
         </div>

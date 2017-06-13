@@ -1,4 +1,6 @@
 import { Auth } from './../services/auth.service';
+import { Event } from '../models/Event';
+
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Component, OnInit, Input, OnChanges, AfterContentChecked } from '@angular/core';
 
@@ -11,7 +13,7 @@ declare const $: any;
 })
 export class PlayersComponent implements OnInit, OnChanges, AfterContentChecked {
 
-  @Input() eventKey: string;
+  @Input() event: Event;
   players: FirebaseListObservable<any>;
   numberOfPlayers: number;
 
@@ -22,7 +24,7 @@ export class PlayersComponent implements OnInit, OnChanges, AfterContentChecked 
   }
 
   ngOnChanges() {
-    this.players = this.db.list('/events/' + this.eventKey + '/players');
+    this.players = this.db.list('/events/' + this.event.$key + '/players');
   }
 
   ngAfterContentChecked() {
@@ -36,7 +38,7 @@ export class PlayersComponent implements OnInit, OnChanges, AfterContentChecked 
       nickname: nickname,
       picture: picture
     }
-    this.db.list('/events/' + this.eventKey + '/players').push(newPlayer);
+    this.db.list('/events/' + this.event.$key + '/players').push(newPlayer);
   }
 
 }

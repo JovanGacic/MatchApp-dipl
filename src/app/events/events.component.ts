@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Event } from '../models/event';
+import { Event } from '../models/Event';
 
 import { Auth } from '../services/auth.service';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
