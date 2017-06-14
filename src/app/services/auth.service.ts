@@ -1,3 +1,5 @@
+import { Event } from './../models/Event';
+import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/filter';
@@ -7,7 +9,7 @@ import {Observable} from 'rxjs/Rx';
 @Injectable()
 export class Auth {
   refreshSubscription: any;
-
+  events: FirebaseListObservable<Event[]>;
   userProfile: any;
   profile: any;
   requestedScopes: string = 'openid profile read:messages write:messages';
@@ -20,7 +22,7 @@ export class Auth {
     scope: this.requestedScopes
   });
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, private db: AngularFireDatabase) { }
 
   public login(): void {
     this.auth0.authorize();
@@ -31,9 +33,9 @@ export class Auth {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         this.setSession(authResult);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
       } else if (err) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
         console.log(err);
       }
     });
@@ -83,10 +85,10 @@ export class Auth {
     this.auth0.client.userInfo(accessToken, (err, profile) => {
       if (profile) {
         self.userProfile = profile;
+            this.getEvents(profile.sub).subscribe(events => console.log(events));
       }
       cb(err, profile);
     });
-        console.log(this.profile);
   }
 
 public renewToken() {
@@ -133,5 +135,15 @@ public unscheduleRenewal() {
   if(!this.refreshSubscription) return;
   this.refreshSubscription.unsubscribe();
 }
+
+	getEvents(id) {
+		this.events = this.db.list('/events', {
+			query: {
+				orderByChild: 'userId',
+				equalTo: id
+			}
+		}) as FirebaseListObservable<Event[]>;
+		return this.events;
+	}
 
 }
