@@ -1,44 +1,52 @@
-.content{
-     text-align: center;
-	  padding: center;
-      margin:auto;
-      margin-top: 100px;
-      background: rgba(255,255,255,0.7);
-      border-style: groove;
-      height: 400px;
-      width: 900px;   
+.content {
+    text-align: center;
+    padding: center;
+    margin: auto;
+    margin-top: 100px;
+    background: rgba(255, 255, 255, 0.7);
+    border-style: groove;
+    height: 400px;
+    width: 900px;
 }
 
-.slikeiprilike{
-     text-align: center;
+.slikeiprilike {
+    text-align: center;
     padding: center;
 }
-.ui.avatar.image{
+
+.ui.avatar.image {
     margin-top: 50px;
     height: 100px;
     width: 100px;
+    cursor: pointer;
 }
-#centralnaSrbija{
+
+#centralnaSrbija {
     height: 100%;
     width: 100%;
 }
-#juznaSrbija{
+
+#juznaSrbija {
     height: 100%;
     width: 100%;
 }
-#beograd{
+
+#beograd {
     height: 100%;
     width: 100%;
 }
-#vojvodina{
+
+#vojvodina {
     height: 100%;
     width: 100%;
 }
-#zapadnaSrbija{
+
+#zapadnaSrbija {
     height: 100%;
     width: 100%;
 }
-#istocnaSrbija{
+
+#istocnaSrbija {
     height: 100%;
     width: 100%;
 }

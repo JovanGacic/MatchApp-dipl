@@ -1,9 +1,10 @@
+import { AuthGuardService } from './services/authguard.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-
+import { Http, RequestOptions } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { EventDetailComponent } from './event-detail/event-detail.component';
@@ -15,16 +16,20 @@ import { ProfileComponent } from './profile/profile.component';
 import { SearchComponent } from 'app/search/search.component';
 import { NotFoundComponent } from './notfound/notfound.component';
 
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { Auth } from './services/auth.service';
-import { AUTH_PROVIDERS } from 'angular2-jwt';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from './environment';
-import { CanActivateViaAuthGuard } from 'app/services/authguard.service';
+import { AuthGuardService as AuthGuard } from 'app/services/authguard.service';
 import { NewEventComponent } from './newevent/newevent.component';
 import { PlayersComponent } from './players/players.component';
 
-
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+	return new AuthHttp(new AuthConfig({
+		tokenGetter: (() => localStorage.getItem('access_token'))
+	}), http, options);
+}
 
 @NgModule({
 	declarations: [
@@ -47,22 +52,26 @@ import { PlayersComponent } from './players/players.component';
 		HttpModule,
 		RouterModule.forRoot([
 			{ path: 'home', component: HomeComponent },
-			{ path: 'events', component: EventsComponent, canActivate: [CanActivateViaAuthGuard] },
-			{ path: 'cities', component: CitiesComponent,	canActivate: [CanActivateViaAuthGuard] },
-			{	path: 'topevents', component: TopEventsComponent,	canActivate: [CanActivateViaAuthGuard] },
-			{	path: '',	redirectTo: '/home', pathMatch: 'full' },
-			{	path: 'detail/:id',	component: EventDetailComponent	},
-			{	path: 'profile', component: ProfileComponent,	canActivate: [CanActivateViaAuthGuard] },
-			{	path: 'search',	component: SearchComponent,	canActivate: [CanActivateViaAuthGuard] },
-			{ path: 'newevent',	component: NewEventComponent,	canActivate: [CanActivateViaAuthGuard] },
-			{	path: '**',	component: NotFoundComponent }
-			])
+			{ path: 'events', component: EventsComponent, canActivate: [AuthGuard] },
+			{ path: 'cities', component: CitiesComponent, canActivate: [AuthGuard] },
+			{ path: 'topevents', component: TopEventsComponent, canActivate: [AuthGuard] },
+			{ path: '', redirectTo: '/home', pathMatch: 'full' },
+			{ path: 'detail/:id', component: EventDetailComponent },
+			{ path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+			{ path: 'search', component: SearchComponent, canActivate: [AuthGuard] },
+			{ path: 'newevent', component: NewEventComponent, canActivate: [AuthGuard] },
+			{ path: '**', component: NotFoundComponent }
+		])
 	],
 	providers: [
-		//  AUTH_PROVIDERS,
 		Auth,
 		AngularFireDatabase,
-		CanActivateViaAuthGuard
+		AuthGuard,
+		{
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [Http, RequestOptions]
+    }
 	],
 	bootstrap: [AppComponent]
 })

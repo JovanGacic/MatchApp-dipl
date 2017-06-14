@@ -1,43 +1,24 @@
 <div class="content" *ngIf="!selectedRegion">
+    <h2>Select region</h2>
     <div class="slikeiprilike">
-        <div class="ui avatar image">
+        <div class="ui avatar image" data-tooltip="Central Serbia" (click)="selectRegion('centralSerbia')">
             <img id="centralnaSrbija" src="../assets/centralnasrbija.jpg">
-            <div class="ui icon button" data-tooltip="Central Serbia" (click)="selectRegion('centralSerbia')">
-                <i class="add icon"></i>
-            </div>
         </div>
-        <div class="ui avatar image">
+        <div class="ui avatar image" data-tooltip="Belgrade" (click)="selectRegion('belgrade')">
             <img id="beograd" src="../assets/beograd.jpg">
-            <div class="ui icon button" data-tooltip="Belgrade" (click)="selectRegion('belgrade')">
-                <i class="add icon"></i>
-            </div>
         </div>
-        <div class="ui avatar image">
+        <div class="ui avatar image" data-tooltip="Vojvodina" (click)="selectRegion('vojvodina')">
             <img id="vojvodina" src="../assets/vojvodina.jpg">
-            <div class="ui icon button" data-tooltip="Vojvodina" (click)="selectRegion('vojvodina')">
-                <i class="add icon"></i>
-            </div>
         </div>
-        <div class="ui avatar image">
+        <div class="ui avatar image" data-tooltip="East Serbia" (click)="selectRegion('eastSerbia')">
             <img id="istocnaSrbija" src="../assets/istocnasrbija.jpg">
-            <div class="ui icon button" data-tooltip="East Serbia" (click)="selectRegion('eastSerbia')">
-                <i class="add icon"></i>
-            </div>
             <br>
         </div>
-        <div class="ui avatar image">
+        <div class="ui avatar image" data-tooltip="West Serbia" (click)="selectRegion('westSerbia')">
             <img id="zapadnaSrbija" src="../assets/zapadnasrbija.jpg">
-            <div class="ui icon button" data-tooltip="West Serbia" (click)="selectRegion('westSerbia')">
-                <i class="add icon"></i>
-            </div>
         </div>
-        <div class="ui avatar image">
+        <div class="ui avatar image" data-tooltip="South Serbia" (click)="selectRegion('southSerbia')">
             <img id="juznaSrbija" src="../assets/juznasrbija.jpg">
-            <div class="ui icon button" data-tooltip="South Serbia" (click)="selectRegion('southSerbia')">
-                <i class="add icon"></i>
-            </div>
         </div>
     </div>
 </div>
-
-<!--<my-cities *ngIf="selectedRegion" [selectedRegion]="selectedRegion"></my-cities>-->

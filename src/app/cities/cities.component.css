@@ -13,4 +13,13 @@ body {
 #cityLogo {
     height: 150px;
     width: 150px;
+    cursor: pointer;
+}
+
+.grbovi {
+    margin: 7% 0 3% 0;
+}
+
+.wrapper {
+    display: inline-block;
 }

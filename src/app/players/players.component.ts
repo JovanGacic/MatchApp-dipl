@@ -34,9 +34,13 @@ export class PlayersComponent implements OnInit, OnChanges, AfterContentChecked 
   joinEvent() {
     const nickname = this.auth.profile.nickname;
     const picture = this.auth.profile.picture;
+    const joined = new Date().toString();
+    const notified = false;
     const newPlayer = {
       nickname: nickname,
-      picture: picture
+      picture: picture,
+      joined: joined,
+      notified: notified
     }
     this.db.list('/events/' + this.event.$key + '/players').push(newPlayer);
   }

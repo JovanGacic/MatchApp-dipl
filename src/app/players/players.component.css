@@ -7,3 +7,7 @@
     max-height: 160px;
     max-width: 105px;
 }
+
+.image {
+    cursor: pointer;
+}

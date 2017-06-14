@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
+import { Component, OnInit, AfterViewInit, AfterContentInit } from '@angular/core';
 import { Auth } from '../services/auth.service';
 
 
@@ -7,8 +8,28 @@ import { Auth } from '../services/auth.service';
 	templateUrl: 'home.component.html',
 	styleUrls: ['home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements AfterContentInit {
 
-constructor( private auth:Auth){}
+	events: FirebaseListObservable<Event[]>;
+
+	constructor(private auth: Auth, private db: AngularFireDatabase) { }
+
+	ngAfterContentInit() {
+		if (this.auth.isAuthenticated()) {
+			// this.getEvents().subscribe(events => console.log(events));
+		} 
+	}
+
+	getEvents() {
+		this.events = this.db.list('/events', {
+			query: {
+				orderByChild: 'userId',
+				equalTo: this.auth.profile.sub
+			}
+		}) as FirebaseListObservable<Event[]>;
+		return this.events;
+	}
+
 
 }
+

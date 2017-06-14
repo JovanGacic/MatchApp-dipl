@@ -4,10 +4,18 @@
     <div class="cities">
         <h1>Select your city of preference</h1>
         <div class="grbovi">
-            <img id="cityLogo" *ngIf="selectedRegion === 'belgrade'" src="../../assets/BG.png" title="Belgrade" (click)="selectCity($event.target.title)">
-            <img id="cityLogo" *ngIf="selectedRegion === 'centralSerbia'" src="../../assets/GM.png" title="Gornji Milanovac" (click)="selectCity($event.target.title)">
-            <img id="cityLogo" *ngIf="selectedRegion === 'centralSerbia'" src="../../assets/CA.png" title="Čačak" (click)="selectCity($event.target.title)">
-            <img id="cityLogo" *ngIf="selectedRegion === 'centralSerbia'" src="../../assets/JA.png" title="Jagodina" (click)="selectCity($event.target.title)">
+            <div class="wrapper" data-tooltip="Belgrade">
+                <img id="cityLogo" *ngIf="selectedRegion === 'belgrade'" alt="Belgrade" src="../../assets/BG.png" (click)="selectCity($event.target.alt)">
+            </div>
+            <div class="wrapper" data-tooltip="Gornji Milanovac">
+                <img id="cityLogo" *ngIf="selectedRegion === 'centralSerbia'" alt="Gornji Milanovac" src="../../assets/GM.png" (click)="selectCity($event.target.alt)">
+            </div>
+            <div class="wrapper" data-tooltip="Čačak">
+                <img id="cityLogo" *ngIf="selectedRegion === 'centralSerbia'" alt="Čačak" src="../../assets/CA.png" (click)="selectCity($event.target.alt)">
+            </div>
+            <div class="wrapper" data-tooltip="Jagodina">
+                <img id="cityLogo" *ngIf="selectedRegion === 'centralSerbia'" alt="Jagodina" src="../../assets/JA.png" (click)="selectCity($event.target.alt)">
+            </div>
         </div>
     </div>
     <div>
