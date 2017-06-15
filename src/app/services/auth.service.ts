@@ -1,15 +1,16 @@
+import { FirebaseService } from './firebase.service';
 import { Event } from './../models/Event';
 import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/filter';
 import auth0 from 'auth0-js';
-import {Observable} from 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class Auth {
   refreshSubscription: any;
-  events: FirebaseListObservable<Event[]>;
+  events: Event[];
   userProfile: any;
   profile: any;
   requestedScopes: string = 'openid profile read:messages write:messages';
@@ -22,7 +23,7 @@ export class Auth {
     scope: this.requestedScopes
   });
 
-  constructor(public router: Router, private db: AngularFireDatabase) { }
+  constructor(public router: Router, private firebase: FirebaseService) { }
 
   public login(): void {
     this.auth0.authorize();
@@ -55,7 +56,6 @@ export class Auth {
         this.profile = profile;
       });
     }
-
   }
 
   public logout(): void {
@@ -73,6 +73,7 @@ export class Auth {
     // access token's expiry time
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
+
   }
 
   public getProfile(cb): void {
@@ -85,65 +86,64 @@ export class Auth {
     this.auth0.client.userInfo(accessToken, (err, profile) => {
       if (profile) {
         self.userProfile = profile;
-            this.getEvents(profile.sub).subscribe(events => console.log(events));
-      }
+        this.firebase.getEvents(profile.sub).subscribe(events => {
+          for (let event of events) {
+            this.firebase.getPlayers(event.$key).subscribe(players => {
+              for (let player of players) {
+                alert(player.nickname + ' has joined your event ' + event.eventName);
+              }
+            });
+          }
+        });
+      };
       cb(err, profile);
     });
   }
 
-public renewToken() {
-  this.auth0.renewAuth({
-    audience: auth0.apiUrl,
-    redirectUri: 'http://localhost:3001/silent',
-    usePostMessage: true
-  }, (err, result) => {
-    if (err) {
-      alert(`Could not get a new token using silent authentication (${err.error}).`);
-    } else {
-      alert(`Successfully renewed auth!`);
-      this.setSession(result);
-    }
-  });
-}
-
-public scheduleRenewal() {
-  if(!this.isAuthenticated()) return;
-  this.unscheduleRenewal();
-
-  const expiresAt = JSON.parse(window.localStorage.getItem('expires_at'));
-
-  const source = Observable.of(expiresAt).flatMap(
-    expiresAt => {
-
-      const now = Date.now();
-
-      // Use the delay in a timer to
-      // run the refresh at the proper time
-      return Observable.timer(Math.max(1, expiresAt - now));
+  public renewToken() {
+    this.auth0.renewAuth({
+      audience: auth0.apiUrl,
+      redirectUri: 'http://localhost:3001/silent',
+      usePostMessage: true
+    }, (err, result) => {
+      if (err) {
+        alert(`Could not get a new token using silent authentication (${err.error}).`);
+      } else {
+        alert(`Successfully renewed auth!`);
+        this.setSession(result);
+      }
     });
+  }
 
-  // Once the delay time from above is
-  // reached, get a new JWT and schedule
-  // additional refreshes
-  this.refreshSubscription = source.subscribe(() => {
-    this.renewToken();
-    this.scheduleRenewal();
-  });
-}
+  public scheduleRenewal() {
+    if (!this.isAuthenticated()) return;
+    this.unscheduleRenewal();
 
-public unscheduleRenewal() {
-  if(!this.refreshSubscription) return;
-  this.refreshSubscription.unsubscribe();
-}
+    const expiresAt = JSON.parse(window.localStorage.getItem('expires_at'));
 
-	getEvents(id) {
-		this.events = this.db.list('/events', {
-			query: {
-				orderByChild: 'userId',
-				equalTo: id
-			}
-		}) as FirebaseListObservable<Event[]>;
-		return this.events;
-	}
+    const source = Observable.of(expiresAt).flatMap(
+      expiresAt => {
+
+        const now = Date.now();
+
+        // Use the delay in a timer to
+        // run the refresh at the proper time
+        return Observable.timer(Math.max(1, expiresAt - now));
+      });
+
+    // Once the delay time from above is
+    // reached, get a new JWT and schedule
+    // additional refreshes
+    this.refreshSubscription = source.subscribe(() => {
+      this.renewToken();
+      this.scheduleRenewal();
+    });
+  }
+
+  public unscheduleRenewal() {
+    if (!this.refreshSubscription) return;
+    this.refreshSubscription.unsubscribe();
+  }
+
 
 }

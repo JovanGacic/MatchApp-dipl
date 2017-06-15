@@ -1,3 +1,4 @@
+import { FirebaseService } from './services/firebase.service';
 import { AuthGuardService } from './services/authguard.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -67,6 +68,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 		Auth,
 		AngularFireDatabase,
 		AuthGuard,
+		FirebaseService,
 		{
       provide: AuthHttp,
       useFactory: authHttpServiceFactory,

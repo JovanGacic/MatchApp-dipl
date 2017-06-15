@@ -14,18 +14,8 @@ export class HomeComponent implements OnInit {
 
 	constructor(private auth: Auth, private db: AngularFireDatabase) { }
 
-	ngOnInit() {}
-
-	getEvents() {
-		this.events = this.db.list('/events', {
-			query: {
-				orderByChild: 'userId',
-				equalTo: this.auth.profile.sub
-			}
-		}) as FirebaseListObservable<Event[]>;
-		return this.events;
+	ngOnInit() {
 	}
-
-
+			
 }
 

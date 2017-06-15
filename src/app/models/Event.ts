@@ -1,3 +1,5 @@
+import { Player } from './Player';
+
 export interface Event {
   $key: string;
   eventName: string;
@@ -6,4 +8,5 @@ export interface Event {
   time: string;
   sport: string;
   userId: string;
+  players: Player[];
 }
