@@ -1,11 +1,11 @@
 <h2>Joined</h2>
 <div class="ui cards" id="players">
-    <div class="card" id="player" *ngFor="let player of players | async">
+    <div class="card" id="player" *ngFor="let player of players">
         <div class="image">
             <img src="{{player.picture}}">
         </div>
     </div>
-    <div class="card" id="player" *ngIf="numberOfPlayers < 12 && auth.profile.sub !== event.userId">
+    <div class="card" id="player" *ngIf="numberOfPlayers < 13 && auth.profile.sub !== event.userId  && userJoined === false">
         <div class="image" (click)="joinEvent()">
             <img src="../../assets/new.png">
         </div>

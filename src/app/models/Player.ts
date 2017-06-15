@@ -3,4 +3,5 @@ export interface Player {
   nickname: string;
   picture: string;
   notified: boolean;
+  userId: string;
 }

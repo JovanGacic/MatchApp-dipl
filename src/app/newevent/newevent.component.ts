@@ -22,6 +22,7 @@ export class NewEventComponent {
     selectedSport: string;
     selectedDate: Date;
     selectedtown: string;
+    newEventKey: string;
     sports: FirebaseListObservable<Sport[]>;
     towns: FirebaseListObservable<Town[]>;
     places: FirebaseListObservable<Place[]>;
@@ -29,10 +30,6 @@ export class NewEventComponent {
     constructor(private db: AngularFireDatabase, public auth: Auth) {
         this.sports = db.list('/sports');
         this.towns = db.list('/towns');
-    }
-
-    show() {
-        $('.ui.modal').modal('show');
     }
 
     getPlaces(key) {
@@ -72,8 +69,23 @@ export class NewEventComponent {
             time: time,
             userId: userId
         };
-        const events = this.db.list('/events');
-        events.push(newEvent);
+        const events = this.db.list('/events', { preserveSnapshot: true });
+        events.push(newEvent).once('value', (snapshot) => this.newEventKey = snapshot.key);
+
+        const notified = true;
+        const nickname = this.auth.profile.nickname;
+        const picture = this.auth.profile.picture;
+        const newPlayer = {
+            nickname: nickname,
+            picture: picture,
+            notified: notified
+        }
+        const players = this.db.list('/events/' + this.newEventKey + '/players');
+        players.push(newPlayer);
+    }
+
+    alert() {
+        alert('You have successfully created event!');
     }
 
 }

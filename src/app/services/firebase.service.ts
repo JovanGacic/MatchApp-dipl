@@ -34,4 +34,9 @@ export class FirebaseService {
         return this.players;
     }
 
+    getJoinedPlayers(key) {
+        this.players = this.db.list('/events/' + key + '/players') as FirebaseListObservable<Player[]>;
+        return this.players;
+    }
+
 }
