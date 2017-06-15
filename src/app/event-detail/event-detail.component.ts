@@ -1,5 +1,5 @@
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
@@ -11,7 +11,7 @@ import { Event } from '../models/Event';
 	templateUrl: './event-detail.component.html'
 })
 
-export class EventDetailComponent implements OnInit {
+export class EventDetailComponent implements OnChanges {
 
 	constructor(private route: ActivatedRoute, private location: Location, private db: AngularFireDatabase) { }
 
@@ -22,7 +22,7 @@ export class EventDetailComponent implements OnInit {
 	time: string;
 	key: string;
 
-	ngOnInit(): void {
+	ngOnChanges() {
 		this.name = this.event.eventName;
 		this.place = this.event.place;
 		this.date = this.event.date;
