@@ -22,21 +22,19 @@ export class PlayersComponent implements OnInit, OnChanges, AfterContentChecked 
 
   constructor(private db: AngularFireDatabase, private firebase: FirebaseService, private auth: Auth) { }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   ngOnChanges() {
     this.firebase.getJoinedPlayers(this.event.$key).subscribe(players => { this.players = players });
+  }
+
+  ngAfterContentChecked() {
+    this.numberOfPlayers = $('.card').length;
     for (let player of this.players) {
       if (player.userId === this.auth.profile.sub) {
         this.userJoined = true;
       }
     }
-  }
-
-  ngAfterContentChecked() {
-    this.numberOfPlayers = $('.card').length;
   }
 
   joinEvent() {
