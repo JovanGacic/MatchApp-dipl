@@ -1,3 +1,4 @@
+import { Player } from './../models/Player';
 import { FirebaseService } from './firebase.service';
 import { Event } from './../models/Event';
 import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
@@ -12,6 +13,7 @@ export class Auth {
   refreshSubscription: any;
   events: Event[];
   userProfile: any;
+  newPlayers = [];
   profile: any;
   requestedScopes: string = 'openid profile read:messages write:messages';
   auth0 = new auth0.WebAuth({
@@ -90,9 +92,9 @@ export class Auth {
           for (let event of events) {
             this.firebase.getPlayers(event.$key).subscribe(players => {
               for (let player of players) {
-                alert(player.nickname + ' has joined your event ' + event.eventName);
+                this.newPlayers.push(player);
               }
-            });
+            })
           }
         });
       };

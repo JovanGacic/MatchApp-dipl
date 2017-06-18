@@ -1,14 +1,17 @@
 h1 {
-  color: #369;
-   font-family: 'PT Sans', sans-serif;
-  font-size: 250%;
+    color: #369;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 250%;
 }
 
-item.active{
-  background-color: #000000
-  ;
+item.active {
+    background-color: #000000;
 }
 
-ui.secondary.pointing.menu{
-  margin-left: 100px !important;
+ui.secondary.pointing.menu {
+    margin-left: 100px !important;
+}
+
+body {
+    overflow-y: hidden;
 }

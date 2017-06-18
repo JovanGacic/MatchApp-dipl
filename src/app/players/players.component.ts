@@ -25,7 +25,7 @@ export class PlayersComponent implements OnInit, OnChanges, AfterContentChecked 
   ngOnInit() { }
 
   ngOnChanges() {
-    this.firebase.getJoinedPlayers(this.event.$key).subscribe(players => { this.players = players });
+    this.firebase.getJoinedPlayers(this.event.$key).subscribe(players => { this.players = players; });
   }
 
   ngAfterContentChecked() {

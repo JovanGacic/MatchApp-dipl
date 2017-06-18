@@ -1,14 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-#logo {
-	width: 70px;
-	height: 70px;
-	background: transparent;
-	
-}
-body {
-	height: 880px;
-	overflow-y: hidden;
-	background: url('/assets/background2.jpg');
 
-	
+#logo {
+    width: 70px;
+    height: 70px;
+    background: transparent;
+}
+
+body {
+    height: 880px;
+    /*overflow-y: hidden;*/
+    background: url('/assets/background2.jpg');
 }

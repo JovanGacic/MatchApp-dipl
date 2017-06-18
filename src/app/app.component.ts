@@ -1,20 +1,40 @@
 import { FirebaseService } from './services/firebase.service';
 import { Player } from './models/Player';
-import { Component } from '@angular/core';
+import { Component, AfterContentChecked } from '@angular/core';
 import { Auth } from './services/auth.service';
+
+declare const $: any;
 
 @Component({
 	selector: 'app-root',
 	templateUrl: 'app.component.html'
 })
 
-export class AppComponent {
+export class AppComponent implements AfterContentChecked {
 	title = 'Match App';
 	players: Player[];
+	nbOfNotifications: number;
+	newPlayers: Player[];
 
 	constructor(private auth: Auth, private firebase: FirebaseService) {
 		auth.handleAuthentication();
 		auth.scheduleRenewal();
+	}
+
+ngAfterContentChecked() {
+	this.nbOfNotifications = this.auth.newPlayers.length;
+	this.newPlayers = this.auth.newPlayers;
+	console.log(this.newPlayers[0]);
+}
+
+	showNotifications() {
+		$('#notifications')
+			.popup({
+				hoverable: true,
+				on: 'click',
+				html: '<p>idemo</p>'
+			})
+			.popup('show');
 	}
 
 }
