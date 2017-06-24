@@ -21,18 +21,18 @@ export class AppComponent implements AfterContentChecked {
 		auth.scheduleRenewal();
 	}
 
-ngAfterContentChecked() {
-	this.nbOfNotifications = this.auth.newPlayers.length;
-	this.newPlayers = this.auth.newPlayers;
-	console.log(this.newPlayers[0]);
-}
+	ngAfterContentChecked() {
+		this.nbOfNotifications = this.auth.newPlayers.length;
+		this.newPlayers = this.auth.newPlayers;
+	}
 
 	showNotifications() {
 		$('#notifications')
 			.popup({
 				hoverable: true,
 				on: 'click',
-				html: '<p>idemo</p>'
+				lastResort: 'bottom center',
+				popup: $('.custom.popup')
 			})
 			.popup('show');
 	}

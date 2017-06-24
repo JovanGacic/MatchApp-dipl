@@ -29,6 +29,13 @@
 
     <router-outlet></router-outlet>
 
+    <div class="ui custom popup bottom center" *ngFor="let newPlayer of newPlayers">
+        <div class="ui one column center aligned grid">
+            <div class="column"><i class="large soccer middle aligned icon"></i><b>{{newPlayer.nickname}}</b> has jooined event you created</div>
+            <div class="divider"></div>
+        </div>
+    </div>
+
 </body>
 
 </html>
