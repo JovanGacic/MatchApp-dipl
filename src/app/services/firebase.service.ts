@@ -1,3 +1,4 @@
+import { Notification } from './../models/Notification';
 import { Player } from './../models/Player';
 import { Auth } from './auth.service';
 import { Event } from './../models/Event';
@@ -9,7 +10,8 @@ import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/databa
 export class FirebaseService {
 
     events: FirebaseListObservable<Event[]>;
-    players: FirebaseListObservable<Player[]>
+    players: FirebaseListObservable<Player[]>;
+    notifications: FirebaseListObservable<Notification[]>;
 
     constructor(private db: AngularFireDatabase) {
     }
@@ -37,6 +39,16 @@ export class FirebaseService {
     getJoinedPlayers(key) {
         this.players = this.db.list('/events/' + key + '/players') as FirebaseListObservable<Player[]>;
         return this.players;
+    }
+
+    getNotifications(id: string) {
+        this.notifications = this.db.list('/notifications', {
+            query: {
+                orderByChild: 'userId',
+                equalTo: id
+            }
+        }) as FirebaseListObservable<Notification[]>;
+        return this.notifications;
     }
 
 }

@@ -28,6 +28,7 @@ export class NewEventComponent {
     newEventKey: string;
     userId: string;
     access_token: string;
+    eventName: string;
     notifications: FirebaseListObservable<Notification[]>
     users: User[];
     sports: FirebaseListObservable<Sport[]>;
@@ -61,6 +62,7 @@ export class NewEventComponent {
     }
 
     createEvent(eventName) {
+        this.eventName = eventName;
         // Create new event and push iz to firebase
         const town = this.selectedtown;
         const place = this.selectedPlace;
@@ -146,10 +148,12 @@ export class NewEventComponent {
             const userId = user.user_id;
             const notified = false;
             const eventKey = this.newEventKey;
+            const eventName = this.eventName;
             const newNotification = {
                 userId: userId,
                 notified: notified,
-                eventKey: eventKey
+                eventKey: eventKey,
+                eventName: eventName
             }
             this.notifications = this.db.list('/notifications/');
             this.notifications.push(newNotification);

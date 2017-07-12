@@ -1,3 +1,4 @@
+import { Notification } from './models/Notification';
 import { FirebaseService } from './services/firebase.service';
 import { Player } from './models/Player';
 import { Component, AfterContentChecked } from '@angular/core';
@@ -15,6 +16,7 @@ export class AppComponent implements AfterContentChecked {
 	players: Player[];
 	nbOfNotifications: number;
 	newPlayers: Player[];
+	notifications: Notification[];
 
 	constructor(private auth: Auth, private firebase: FirebaseService) {
 		auth.handleAuthentication();
@@ -22,8 +24,14 @@ export class AppComponent implements AfterContentChecked {
 	}
 
 	ngAfterContentChecked() {
-		this.nbOfNotifications = this.auth.newPlayers.length;
-		this.newPlayers = this.auth.newPlayers;
+		if (this.auth.profile) {
+			this.newPlayers = this.auth.newPlayers;
+			this.firebase.getNotifications(this.auth.profile.sub).subscribe(notifications => {
+				this.notifications = notifications;
+			});
+			this.nbOfNotifications = this.auth.newPlayers.length + this.notifications.length;
+		}
+
 	}
 
 	showNotifications() {
@@ -31,10 +39,17 @@ export class AppComponent implements AfterContentChecked {
 			.popup({
 				hoverable: true,
 				on: 'click',
-				lastResort: 'bottom center',
+				position: 'bottom left',
+				lastResort: 'bottom left',
 				popup: $('.custom.popup')
 			})
 			.popup('show');
+	}
+
+	goToEvent() {
+		// this.selectedCity = city;
+		// this.pageTitle = 'Events in ' + city;
+		// this.router.navigate(['/events'], { queryParams: { city: this.selectedCity, pageTitle: this.pageTitle } });
 	}
 
 }
