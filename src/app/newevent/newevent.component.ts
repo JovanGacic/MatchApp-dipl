@@ -1,3 +1,5 @@
+import { Notification } from './../models/Notification';
+import { User } from './../models/User';
 import { Auth } from './../services/auth.service';
 import { Place } from './../models/Place';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
@@ -8,6 +10,7 @@ import { Sport } from './../models/Sport';
 import { Component } from '@angular/core';
 
 declare const $: any;
+declare const require: any;
 
 @Component({
     selector: 'newevent',
@@ -23,6 +26,10 @@ export class NewEventComponent {
     selectedDate: Date;
     selectedtown: string;
     newEventKey: string;
+    userId: string;
+    access_token: string;
+    notifications: FirebaseListObservable<Notification[]>
+    users: User[];
     sports: FirebaseListObservable<Sport[]>;
     towns: FirebaseListObservable<Town[]>;
     places: FirebaseListObservable<Place[]>;
@@ -86,51 +93,67 @@ export class NewEventComponent {
         players.push(newPlayer);
 
         // Get all user id's from auth0 user database
-        getToken(userid) {
-            const request = require('request');
-            const options = {
-                method: 'POST',
-                url: 'https://drazovic.eu.auth0.com/oauth/token',
-                headers: { 'content-type': 'application/json' },
-                body:
-                {
-                    grant_type: 'client_credentials',
-                    client_id: 'ypS8zEospMg9VhMpezpB50C5lgAg2iKi',
-                    client_secret: 'VoIpRUCsPXPagbaXUOCfPTVnKo3XwaUTplGBee07h6h8106iuEVTkRDhDNGKKrKV',
-                    audience: 'https://drazovic.eu.auth0.com/api/v2/'
-                },
-                json: true
-            };
-            const self = this;
-            request(options, function (error, response, body) {
-                if (error) { throw new Error(error); }
-                self.access_token = body.access_token;
-                self.getUser(userid);
-            });
+        this.getToken();
+    }
+
+    getToken() {
+        const request = require('request');
+        const options = {
+            method: 'POST',
+            url: 'https://matchapp.eu.auth0.com/oauth/token',
+            headers: { 'content-type': 'application/json' },
+            body:
+            {
+                grant_type: 'client_credentials',
+                client_id: 'G7GxrEEzfe2Rhg95sD7KGt94fmelx971',
+                client_secret: 'EJ_5BSTuT3dCRUhmqDJMD1AbZI8jchUj76qUDqVZe7Fw9dLFYyjn0h0nBDwxzyTz',
+                audience: 'https://matchapp.eu.auth0.com/api/v2/'
+            },
+            json: true
+        };
+        const self = this;
+        request(options, function (error, response, body) {
+            if (error) { throw new Error(error); }
+            self.access_token = body.access_token;
+            self.getUser();
+        });
+    }
+
+    getUser() {
+        const request = require('request');
+        const options = {
+            method: 'GET',
+            url: 'https://matchapp.eu.auth0.com/api/v2/users',
+            headers:
+            {
+                authorization: 'Bearer ' + this.access_token,
+                'content-type': 'application/json'
+            },
+            json: true
+        };
+        const self = this;
+        request(options, function (error, response, body) {
+            if (error) { throw new Error(error); }
+            self.users = body;
+            console.log(self.users);
+            self.createNotifications();
+        });
+    }
+
+    // Creates notifications in firebase so that every user gets notified that new event is created
+    createNotifications() {
+        for (let user of this.users) {
+            const userId = user.user_id;
+            const notified = false;
+            const eventKey = this.newEventKey;
+            const newNotification = {
+                userId: userId,
+                notified: notified,
+                eventKey: eventKey
+            }
+            this.notifications = this.db.list('/notifications/');
+            this.notifications.push(newNotification);
         }
-
-        getUser(userid) {
-            const request = require('request');
-            const options = {
-                method: 'GET',
-                url: 'https://matchapp.eu.auth0.com/api/v2/users',
-                headers:
-                {
-                    authorization: 'Bearer ' + this.access_token,
-                    'content-type': 'application/json'
-                },
-                json: true
-            };
-            const self = this;
-            request(options, function (error, response, body) {
-                if (error) { throw new Error(error); }
-                self.user = body;
-                console.log(self.user);
-            });
-        }
-
-        // Create notification for all users that the event is created and push it to firebase
-
     }
 
     alert() {
